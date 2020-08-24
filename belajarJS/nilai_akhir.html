@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<body>
+    <form action="" name="formNilai">
+        <!-- inputan -->
+
+        <label for="">Nilai quiz</label>
+        <input type="number" name="nilaiQuiz">
+        <label for="">Nilai Tugas</label>
+        <input type="number" name="nilaiTugas">
+        <label for="">Nilai UTS</label>
+        <input type="number" name="nilaiUTS">
+        <label for="">Nilai UAS</label>
+        <input type="number" name="nilaiUAS">
+        <hr>
+        
+        <!-- form hasil -->
+        <label for="">Hasil Grade</label>
+        <input type="text" name="hasilip" disabled>
+        <label for="">Keterangan</label>
+        <input type="text" name="ketnilai" disabled >
+
+        <!-- tombol aksi -->
+        <button value="Hitung" onclick="hitungNilai()">Hitung</button>
+        <button type="reset">reset</button>
+    </form>
+    <script>
+        function hitungNilai(){
+            var quiz=parseFloat(document.formNilai.nilaiQuiz.value);
+            var tugas=parseFloat(document.formNilai.nilaiTugas.value);
+            var uts=parseFloat(document.formNilai.nilaiUTS.value);
+            var uas=parseFloat(document.formNilai.nilaiUAS.value);
+
+            // tampilan
+            var ip="";
+            var ket="";
+
+            // nilai akhir
+            var nilai_akhir=((0.10*quiz)+(0.20*tugas)+(0.30*uts)+(0.40*uas));
+
+            if(nilai_akhir>=85){
+                ip="grade A";
+                ket="nilai sangat memuaskan";
+            }else if(nilai_akhir>=73){
+                ip="B";
+                ket="nilai sangat baik";
+            }else if(nilai_akhir>=65){
+                ip="C";
+                ket="nilai cukup baik";
+            }else if(nilai_akhir>=50){
+                ip="D";
+                ket="Kamu harus Ulang";
+            }else{
+                ip="D";
+                ket="DO";
+            }
+            alert(ip+ket);
+            // document.formNilai.hasilip.value=ip;
+            // document.formNilai.ketnilai.value=ket;
+            
+        }
+    </script>
+    <script src="../js/bootstrap.js"></script>
+</body>
+</html>

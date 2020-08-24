@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>
+        </title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <style>
+            *{
+                margin: 0;
+                /* padding: 0; */
+            }
+            .wrap{
+                background-color: blue;
+                /* width: 90px; */
+            }
+            /* bagian kepal */
+            .wrap .kepala{
+                background-color: blue;
+                /* height: 50px; */
+                padding: 20px 30px;
+                color: white;
+            }
+            /* akhir kepala */
+
+            /* bagian menu */
+
+            .wrap .menu{
+                background: yellowgreen;
+            }
+            .wrap .menu ul{
+                padding: 0;
+                margin: 0;
+                background: yellow;
+                overflow: hidden;
+                text-decoration: none;
+
+            }
+            .wrap .menu ul li{
+                float: left;
+                list-style-type: none;
+                padding: 10px;
+            }
+            .wrap .menu ul li a{
+                color: white;
+                text-decoration: none;
+            }
+            /* akhir menu */
+            .clear{
+                clear: both;
+            }
+            .badan{
+                height: 450px;
+
+            }
+            /* bagian siderbar */
+            .wrap .badan .siderbar{
+                background-color: orange;
+                float: left;
+                height: 25%;
+                width: 100%;
+
+            }
+            .wrap .badan .isi{
+                background-color: red;
+                float: left;
+                height: 100%;
+                width: 75%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="kepala">
+                <h1>koding asyik</h1>
+                <p>Tutorial belajar membuat layout website sederhana</p>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">html</a></li>
+                    <li><a href="#">css</a></li>
+                    <li><a href="#">php</a></li>
+                    <li><a href="#">javascript</a></li>
+                </ul>
+
+            </div>
+
+            <div class="badan">
+                <div class="siderbar">
+                    siderbar
+                    <ul>
+                        <li><a href="#">tutorial html</a></li>
+                        <li><a href="#">tutorial css</a></li>
+                        <li><a href="#">tutorial php</a></li>
+                        <li><a href="#">tutorial JQuery</a></li>
+                    
+                    </ul>
+                </div>
+
+                <div class="clear"></div>
+                <div class="footer"></div>
+            </div>
+
+        </div>
+    </body>
+</html>
