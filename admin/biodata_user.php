@@ -12,14 +12,27 @@ function tambah($koneksi)
         $jk = $_POST['jenis_kelamin'];
         $alamat = $_POST['alamat'];
 
+        // $foto = $_FILES["foto"]["name"];
+        // if (move_uploaded_file($_FILES['foto']['tmp_name'],"upload/biodata/".$_FILES['foto']['name'])) {
+        //     echo "Gambar Berhasil di upload";
+        // } else {
+        //     echo "Gambar Gagal diupload";
+        // }
+
         $foto = $_FILES["foto"]["name"];
-        if (move_uploaded_file($_FILES['foto']['tmp_name'],"upload/biodata/".$_FILES['foto']['name'])) {
-            echo "Gambar Berhasil di upload";
+        $format = explode(".", $foto);
+        $fileExtension = end($format);
+        $nama_sementara = $_FILES['foto']['tmp_name'];
+        $md5file = md5($foto) . "." . $fileExtension;
+        $lokasi_upload = "upload/biodata/";
+        $fungsi_upload = move_uploaded_file($nama_sementara, $lokasi_upload . $md5file);
+        if ($fungsi_upload) {
+            echo '';
         } else {
-            echo "Gambar Gagal diupload";
+            echo '<script>alert("gagal di upload")</script>';
         }
 
-        $query_input = mysqli_query($koneksi, "INSERT INTO biodata VALUES(md5('$id'),'$nama','$tanggal','$tpt_lahir','$alamat','$jk','$foto','$id_user')");
+        $query_input = mysqli_query($koneksi, "INSERT INTO biodata VALUES(md5('$id'),'$nama','$tanggal','$tpt_lahir','$alamat','$jk','$md5file','$id_user')");
 
         if ($query_input) {
             echo '<script>alert("data berhasil di input")
@@ -54,7 +67,6 @@ function tambah($koneksi)
                                     <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="id_user">
                                         <?php
                                         $show = mysqli_query($koneksi, "SELECT * FROM user");
-
                                         while ($data = mysqli_fetch_array($show)) {
 
                                         ?>
@@ -141,12 +153,12 @@ function tambah($koneksi)
                                                     <td><?php echo $data['tempat_lahir'] ?></td>
                                                     <td><?php echo $data['alamat'] ?></td>
                                                     <td>
-                                                        <a href="upload/biodata/<?= $data['foto'] ?>"></a>
+                                                    <a href="upload/biodata/<?php echo $data['foto'] ?>" target="blank" class="btn btn-info">foto</a>
                                                     </td>
 
                                                     <td>
-                                                        <a href="typography.php?aksi=update&id=<?php echo $data['id_kategori']; ?>&nama_kategori=<?php echo $data['nama_kategori']; ?>" class="btn btn-warning">Edit</a>
-                                                        <a href="typography.php?aksi=delete&id=<?php echo $data['id_biodata']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="btn btn-danger">Hapus</a>
+                                                        <a href="biodata_user.php?aksi=update&id=<?php echo $data['id_kategori']; ?>&nama_kategori=<?php echo $data['nama_kategori']; ?>" class="btn btn-warning">Edit</a>
+                                                        <a href="biodata_user.php?aksi=delete&id=<?php echo $data['id_biodata']; ?>" onclick="return confirm('Apakah anda yakin ingin menghapus?')" class="btn btn-danger">Hapus</a>
                                                     </td>
                                                 </tr>
                                             <?php
@@ -190,7 +202,12 @@ function hapus($koneksi)
     if (isset($_GET['id']) && isset($_GET['aksi'])) {
         $id = $_GET['id'];
 
+        $tampil =mysqli_query($koneksi, "SELECT foto FROM biodata='$id'");
+        $data =mysqli_fetch_array($tampil);
+        unlink("upload/biodata/".$data['foto']);
+
         $query_hapus = mysqli_query($koneksi, "DELETE FROM biodata WHERE id_biodata='$id'");
+
         if ($query_hapus) {
             if ($_GET['aksi'] == 'delete') {
                 echo '<script>alert("Data Berhasil dihapus")
