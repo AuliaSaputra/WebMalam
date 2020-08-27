@@ -36,13 +36,13 @@ function tambah($koneksi)
 
         if ($query_input) {
             echo '<script>alert("data berhasil di input")
-            window.location.href="typography.php";
+            window.location.href="biodata_user.php";
             window.history.back();
            
           </script>';
         } else {
             echo '<script>alert("data gagal di input")
-            window.location.href="buttons.php";
+            window.location.href="biodata_user.php";
           </script>';
         }
     }
@@ -145,8 +145,7 @@ function tambah($koneksi)
                                             $no = 1;
                                             while ($data = mysqli_fetch_array($query)) { ?>
 
-                                                <tr>
-                                                    <td><?php echo $no ?></td>
+                                                <tr><td><?php echo $no ?></td>
                                                     <td><?php echo $data['nama'] ?></td>
                                                     <td><?php echo $data['jenis_kelamin'] ?></td>
                                                     <td><?php echo $data['tanggal_lahir'] ?></td>
@@ -202,16 +201,16 @@ function hapus($koneksi)
     if (isset($_GET['id']) && isset($_GET['aksi'])) {
         $id = $_GET['id'];
 
-        $tampil =mysqli_query($koneksi, "SELECT foto FROM biodata='$id'");
+        $tampil =mysqli_query($koneksi, "SELECT foto FROM biodata WHERE id_biodata='$id'");
         $data =mysqli_fetch_array($tampil);
-        unlink("upload/biodata/".$data['foto']);
+        unlink("upload/biodata/" . $data['foto']);
 
         $query_hapus = mysqli_query($koneksi, "DELETE FROM biodata WHERE id_biodata='$id'");
 
         if ($query_hapus) {
             if ($_GET['aksi'] == 'delete') {
                 echo '<script>alert("Data Berhasil dihapus")
-          window.location.href="typography.php";
+          window.location.href="biodata_user.php";
         </script>';
             }
         } else {

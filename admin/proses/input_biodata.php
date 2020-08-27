@@ -7,7 +7,7 @@ include 'koneksi.php';
         $tempat_lahir=$_POST['tempat_lahir'];
         $alamat=$_POST['alamat'];
         $jk=$_POST['jk'];
-        // $foto=$_POST['foto'];
+        
         $foto=$_FILES["foto"]["name"];
             if(move_uploaded_file($_FILES['foto']['tmp_name'],"../upload/biodata/".$_FILES['foto']['name'])){
                 echo"gambar berhasil di input";

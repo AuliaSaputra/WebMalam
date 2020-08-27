@@ -9,7 +9,7 @@
             <div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Form Input User</h4>
+                        <h4 class="card-title">Form Edit User</h4>
                         <p class="card-description">
                             Masukkan Biodata User
                         </p>
@@ -42,11 +42,18 @@
                                     name="email" value="<?php echo $data['email']; ?>">
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputName1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputName1"
-                                    placeholder="*********" name="pass" value="<?php echo $data['password']; ?>">
-                            </div>
+                            <?php if (!empty($data['password'])) { ?>
+
+                                <button class="btn btn-success" onclick="gantiPass()">Ganti Pasword</button>
+                                <div id="gantipass"></div>
+                                <?php } else { ?>
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Password" name="pass5" required>
+                                </div>
+                            <?php } ?>
+
+                            
 
                             <div class="form-group">
                                 <label for="exampleInputEmail3">No HP</label>
@@ -109,6 +116,7 @@
                       </span>
                     </div>
                   </div> -->
+
                             <button type="submit" class="btn btn-success mr-2" name="update_user">Submit</button>
                             <button class="btn btn-light">Cancel</button>
                         </form>
@@ -544,6 +552,21 @@
         </div>
         <!-- content-wrapper ends -->
         <?php include 'footer.php' ?>
+
+        <script>
+    function gantiPass() {
+
+        document.getElementById('gantipass')
+            .innerHTML +=
+            '<div class="form-group">\
+            <label for="exampleInputName1">Password</label>\
+            <input type="password" class="form-control" id="exampleInputName1" placeholder="Password" name="pass" required>\
+            </div>'
+
+    }
+</script>
+
+
         </body>
 
 </html>

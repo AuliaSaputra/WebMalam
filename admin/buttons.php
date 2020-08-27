@@ -128,6 +128,7 @@ function tambah($koneksi)
     if(isset($_POST['ubah_kategori'])){
       $id = $_POST['id_kategori'];
       $nama = $_POST['nama_kategori'];
+
       if(!empty($nama)){
         $query_update = mysqli_query($koneksi,"UPDATE kategori SET nama_kategori='$nama' WHERE id_kategori='$id'");
         if($query_update && isset ($_GET['aksi'])){
@@ -144,7 +145,7 @@ function tambah($koneksi)
     }
 
     if(isset($_GET['id'])){ ?>
-    <div class="col-md-12 grid-margin stretch-card">
+           <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Form Data Kategori</h4>
