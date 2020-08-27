@@ -191,7 +191,7 @@ function ubah($koneksi)
 
     // querynya
     if(!empty($judul)){
-        $query_update = mysqli_query($koneksi, "UPDATE postingan set judul='$judul',konten='$konten',tgl_release='$tanggal',foto='$md5file',id_user='$id_user',id_kategori='$id_kategori'");
+        $query_update = mysqli_query($koneksi, "UPDATE postingan set judul='$judul',konten='$konten',tgl_release='$tanggal',foto='$md5file',id_user='$id_user',id_kategori='$id_kategori' WHERE id_postingaan='$id_postingan'");
 
         if ($query_update && isset($_GET['aksi'])) {
             if ($_GET['aksi'] == 'update') {
